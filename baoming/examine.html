@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>搜索</title>
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="style/examine.css">
+	<link rel="stylesheet" href="style/button.css">
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <!-- import JavaScript -->
+  	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  	<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+  	<script>
+		var pixelRatio = 1 / window.devicePixelRatio;    //还原设备的真实分辨率；  
+		//devicePixelRatio设备的像素比   像素比：物理像素/逻辑像素；          
+		document.write('<meta name="viewport" content="width=device-width,initial-scale='+pixelRatio+',minimum-scale='+pixelRatio+',maximum-scale='+pixelRatio+'" />');
+
+		var html=document.getElementsByTagName('html')[0];   //获取每个型号的手的html元素
+		var pageWidth=html.getBoundingClientRect().width;   //获取每个型号的手的宽度
+		html.style.fontSize=pageWidth/10+"px";        //除10获取每个型号手机的根元素字体大小    
+		//rem是相对于根元素   动态的获取每个型号手机下面根元素的字体大小              
+	</script>
+</head>
+<body>
+	<div id="app">
+		<div class="res1 res" v-if="yes">审核中请耐心等待...</div>
+		<div class="bt">
+			<a  class="button button-glow button-rounded button-raised button-primary"href="/baoming/search.html">点击查询</a>
+		</div>
+	</div>
+	<script>
+	
+	</script>
+	<script type="">
+			
+
+	</script>
+</body>
+</html>

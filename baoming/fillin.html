@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>填写信息</title>
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="style/fill.css">
+	<link rel="stylesheet" href="style/button.css">
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<link href="https://weixin.sijiaoedu.com/baoming/style/bootstrap.css" rel="stylesheet">
+	<!-- <link rel="stylesheet" type="text/css" href="style/weui.min.css">
+	<link rel="stylesheet" type="text/css" href="style/weuix.min.css"> -->
+  <!-- import Vue before Element -->
+  	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <!-- import JavaScript -->
+  	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  	<!-- <script src="js/zepto.min.js"></script>
+  	<script type="js/zepto.weui.min.js"></script> -->
+  	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<!-- <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script> -->
+	<script>
+		var pixelRatio = 1 / window.devicePixelRatio;    //还原设备的真实分辨率；  
+		//devicePixelRatio设备的像素比   像素比：物理像素/逻辑像素；          
+		document.write('<meta name="viewport" content="width=device-width,initial-scale='+pixelRatio+',minimum-scale='+pixelRatio+',maximum-scale='+pixelRatio+'" />');
+
+		var html=document.getElementsByTagName('html')[0];   //获取每个型号的手的html元素
+		var pageWidth=html.getBoundingClientRect().width;   //获取每个型号的手的宽度
+		html.style.fontSize=pageWidth/10+"px";        //除10获取每个型号手机的根元素字体大小    
+		//rem是相对于根元素   动态的获取每个型号手机下面根元素的字体大小              
+	</script>
+</head>
+<body>
+	<div id="app">
+		<div class="title">
+				<div class="titleicon"></div>
+				<span >基本信息</span>
+			</div>
+			<div class="tel">
+				<span class='span1'>姓名</span>
+				<el-input v-model="input0" placeholder="请输入姓名" class="el-input"></el-input>
+			</div>
+			<div class="tel">
+				<span class='span1'>手机号码</span>
+				<el-input v-model="input1" placeholder="请输入手机号码" class="el-input"></el-input>
+			</div>
+			<div class="tel">
+				<span class='span1'>身份证号码</span>
+				<el-input v-model="input2" placeholder="请输入身份证号码" class="el-input"></el-input>
+			</div>
+			<div class="tel">
+				<span class='span1'>家庭住址</span>
+			<form class="form-inline">
+		      <div data-toggle="distpicker">
+		        <div class="form-group">
+		          <label class="sr-only" for="province2">Province</label>
+		          <select class="form-control" id="province2" data-province="----省----"></select>
+		        </div>
+		        <div class="form-group">
+		          <label class="sr-only" for="city2">City</label>
+		          <select class="form-control" id="city2" data-city="----市----"></select>
+		        </div>
+		        <div class="form-group">
+		          <label class="sr-only" for="district2">District</label>
+		          <select class="form-control" id="district2" data-district="----区----"></select>
+		        </div>
+		      </div>
+    		</form>
+    		<span class='span1'></span>
+    		<el-input
+			  type="textarea"
+			  :autosize="{ minRows: 2, maxRows: 4}"
+			  placeholder="请输入详细地址"
+			  v-model="textarea3">
+			</el-input>
+    		</div>
+    		<div class="hr"></div>
+    		<div class="title">
+				<div class="titleicon"></div>
+				<span >所在单位</span>
+			</div>
+			<div class="tel">
+				<span class='span1'>单位名称</span>
+				<el-input v-model="input3" placeholder="请输入单位名称" class="el-input"></el-input>
+			</div>
+			<div class="tel">
+				<span class='span1'>联系方式</span>
+				<el-input v-model="input4" placeholder="请输入联系方式" class="el-input"></el-input>
+			</div>
+			<div class="tel">
+				<span class='span1'>所在地址</span>
+				<el-input v-model="input5" placeholder="请输入所在地址" class="el-input el-input5"></el-input>
+				<div class="position"><img src='img/dingwei.png'></div>
+			</div>
+			<div class="hr"></div>
+    		<div class="title">
+				<div class="titleicon"></div>
+				<span >直属联系人</span>
+			</div>
+			<div class="tel">
+				<span class='span1'>姓名</span>
+				<el-input v-model="input6" placeholder="请输入姓名" class="el-input"></el-input>
+			</div>
+			<div class="tel">
+				<span class='span1'>手机号码</span>
+				<el-input v-model="input7" placeholder="请输入手机号码" class="el-input"></el-input>
+			</div>
+			<div class="tel tel9">
+				<span class='span1'>关系</span>
+				<!--  <el-select v-model="value" placeholder="请选择">
+			    <el-option
+			      v-for="item in options"
+			      :key="item.value"
+			      :label="item.label"
+			      :value="item.value">
+			    </el-option>
+			  </el-select> -->
+			 <select class="el-input__inner sel"id="sel1">
+			  <option value="">请选择亲属关系</option>
+				  <option value="父亲">父亲</option>
+				  <option value="母亲">母亲</option>
+				  <option value="姊妹">配偶</option>
+				  <option value="姊妹">兄弟</option>
+				  <option value="姊妹">姐妹</option>
+			</select>
+			</div>
+			<div class="tel">
+				<span class='span1'>姓名</span>
+				<el-input v-model="input8" placeholder="请输入姓名" class="el-input"></el-input>
+			</div>
+			<div class="tel">
+				<span class='span1'>手机号码</span>
+				<el-input v-model="input9" placeholder="请输入手机号码" class="el-input"></el-input>
+			</div>
+			<div class="tel">
+				<span class='span1'>关系</span>
+				 <select class="el-input__inner sel"id="sel2">
+				  <option value="">请选择亲属关系</option>
+				  <option value="父亲">父亲</option>
+				  <option value="母亲">母亲</option>
+				  <option value="姊妹">配偶</option>
+				  <option value="姊妹">兄弟</option>
+				  <option value="姊妹">姐妹</option>
+				</select>
+			</div>
+			<div>
+				<div class="last">
+					<div class="bt">
+						<a  class="button button-glow button-rounded button-raised button-primary" @click="submit()">确认填写</a>
+					</div>
+				</div>
+			</div>
+	</div>
+	<script>
+		var doit = new Vue({
+			el:'#app',
+			data: {
+				input0:'',
+				input1:'',
+				input2:'',
+				input3:'',
+				input4:'',
+				input5:'',
+				input6:'',
+				input7:'',
+				input8:'',
+				input9:"",
+				textarea3:'',
+				  options: [{
+			          value: '选项1',
+			          label: '父亲'
+			        }, {
+			          value: '选项2',
+			          label: '母亲'
+			        }, {
+			          value: '选项3',
+			          label: '姊妹'
+			        }],
+			        value: ''
+					},
+					methods:{
+						submit(){
+							if (!/^((1[3,5,8][0-9])|(14[5,7])|(17[0,6,7,8])|(19[7]))\d{8}$/.test(this.input1)) {
+					            alert("手机号码输入有误")
+					            return false
+					        }
+					        if (!/^\d{6}(18|19|20)?\d{2}(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/i.test(this.input2)) {
+					            alert("身份证号码输入有误")
+					            return false
+					        }
+					        if (!/^((1[3,5,8][0-9])|(14[5,7])|(17[0,6,7,8])|(19[7]))\d{8}$/.test(this.input4)) {
+					            alert("单位联系方式输入有误")
+					            return false
+					        }
+					        if (!/^((1[3,5,8][0-9])|(14[5,7])|(17[0,6,7,8])|(19[7]))\d{8}$/.test(this.input7)) {
+					            alert("直属联系人号码输入有误")
+					            return false
+					        }
+					        if (!/^((1[3,5,8][0-9])|(14[5,7])|(17[0,6,7,8])|(19[7]))\d{8}$/.test(this.input9)) {
+					            alert("直属联系人号码输入有误")
+					            return false
+					        }
+							if(this.input1!= ''&& this.input2!= '' && this.input3!= ''&& this.input4!= ''&&this.input5!= ''&& this.input6!= '' && this.input7!= ''&& this.input8!= ''&&this.input9!= ''&&
+								$('#province2').val() !=''&&$('#city2').val() != ''&& $('district2').val() !=""&& this.textarea3 !="" && $("#sel1").val() !=''&& $("#sel2").val() !=''){
+								var data = {"userName":this.input0,"cardNo":this.input2,"phone":this.input1,"province":$('#province2').val(),"city":$('#city2').val(), "area":$('#district2').val(),"address":this.textarea3,"companyName":this.input3,"compayTel":this.input4,"companyAddress":this.input5,"relationshipOne":$("#sel1").val(),"userNameOne":this.input6,"userPhoneOne":this.input7,"relationshipTwo":$("#sel2").val(),"userNameTwo":this.input8, "userPhoneTwo":this.input9,id:localStorage.getItem("memberId")};
+							 $.ajax({ 
+	     						type : "POST", //提交方式 
+	     						url : "https://weixin.sijiaoedu.com/api/addNewMessage.html?",
+	     						data : data,
+	     						success : function(data) { 
+	      								if ( data == '1' ) {
+											// $(location).attr('href', '/baoming/apply.html');
+	      								} else { 
+	       									 this.$message('您输入的身份证号码与实名验证不一致');
+	      									} 
+	     								} 
+    							}); 
+							}else{
+								alert("输入内容不能为空")
+							}
+						}
+					}
+				})
+			
+	</script>
+		<script src="https://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+		<script src="https://weixin.sijiaoedu.com/baoming/js/bootstrap.min.js"></script>
+		<script src="js/distpicker.data.js"></script>
+	  	<script src="js/distpicker.js"></script>
+	  	<script src="js/main.js"></script>
+</body>
+</html>

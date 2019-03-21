@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>身份信息验证</title>
+	<link rel="stylesheet" type="text/css" href="style/scanning.css">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="style/button.css">
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+	<script>
+		var pixelRatio = 1 / window.devicePixelRatio;    //还原设备的真实分辨率；  
+		//devicePixelRatio设备的像素比   像素比：物理像素/逻辑像素；          
+		document.write('<meta name="viewport" content="width=device-width,initial-scale='+pixelRatio+',minimum-scale='+pixelRatio+',maximum-scale='+pixelRatio+'" />');
+
+		var html=document.getElementsByTagName('html')[0];   //获取每个型号的手的html元素
+		var pageWidth=html.getBoundingClientRect().width;   //获取每个型号的手的宽度
+		html.style.fontSize=pageWidth/10+"px";        //除10获取每个型号手机的根元素字体大小    
+		//rem是相对于根元素   动态的获取每个型号手机下面根元素的字体大小              
+	</script>
+</head>
+<body>
+	<div id="app">
+		<div class="title">
+			<div class="titleicon"></div>
+			<span >基本信息</span>
+		</div>
+		<div class="p">
+		<el-upload
+		  class="avatar-uploader up1"
+		  action="https://weixin.sijiaoedu.com/uploads/upload.html"
+		  :show-file-list="false"
+			:on-progress="GRT"
+		  :on-success="handleAvatarSuccess"
+		  >
+		  <el-progress type="circle" :percentage=demo class="cricle1" v-if="show"></el-progress>
+		  <img v-if="imageUrl" :src="imageUrl" class="avatar">
+		  <i v-else class="el-icon-upload avatar-uploader-icon"></i>
+		</el-upload>
+		<el-upload
+		  class="avatar-uploader up2"
+		  action="https://weixin.sijiaoedu.com/uploads/upload.html"
+		  :show-file-list="false"
+		  :on-success="handleAvatarSuccess1"
+		  :on-progress="GRT2"
+		  >
+		  <el-progress type="circle" :percentage=demo2 class="cricle2" v-if="show2"></el-progress>
+		  <img v-if="imageUrl1" :src="imageUrl1" class="avatar">
+		  <i v-else class="el-icon-upload avatar-uploader-icon"></i>
+		</el-upload>
+			
+		</div>
+		<div class="app">
+			<p>(身份证正面照)</p>
+			<p>(身份证国徽照)</p>
+		</div>
+		
+		<div class="hr"></div>
+		<div  id="viewdeoTitle">
+		<div class="title">
+			<div class="titleicon"></div>
+			<span >手持身份证照片</span>
+		</div>
+		<!-- <div>	 -->
+			<!-- <el-upload
+		  class="avatar-uploader-line"
+		  action="https://weixin.sijiaoedu.com/uploads/upload.html"
+		  :show-file-list="false"
+		  :on-success="handleAvatarSuccess2"
+		  >
+		  <img v-if="imageUrl2" :src="imageUrl2" class="avatar-line">
+		  <i v-else class="el-icon-upload avatar-uploader-icon-line"></i>
+		</el-upload>  -->
+  		<!-- </div>  -->
+  		<div class="video">	
+		<!-- <video id="video"  controls>
+  		</video> -->
+		<el-upload
+		  class="avatar-uploader updata"
+		  action="https://weixin.sijiaoedu.com/uploads/upload.html"
+		  :show-file-list="false"
+		  :on-progress="GRT3"
+		  :on-success="handleAvatarSuccess2"
+		  >
+		  <el-progress type="circle" :percentage=demo3 class="cricle3" v-if="show3"></el-progress>
+		  <img v-if="imageUrl2" :src="imageUrl2" class="avatar">
+		  <i v-else class="up"></i>
+		</el-upload>
+  		<div class="size">手持身份证图片</div>
+  		<!-- <canvas id="canvas" width="480" height="320"></canvas>  -->
+  		</div> 
+		</div>
+  		<!-- <div>
+    		<button id="capture">拍照</button>
+  		</div> --> 
+		<div class="last">
+					<div class="bt">
+						<a id="capture" @click="open" class="button button-glow button-rounded button-raised button-primary">确认认证点击继续完善信息</a>
+					</div>
+				</div>
+	</div>
+	<script src="https://weixin.sijiaoedu.com/baoming/js/html2canvas.min.js"></script> 
+		<script src="https://weixin.sijiaoedu.com/baoming/layer/layer.js"></script>
+	<script type="text/javascript">
+		var frontPhoto = "";
+		var backPhoto = "";
+		var doit = new Vue({
+			el:'#app',
+			data: {
+				 imageUrl: '',
+				 imageUrl1: '',
+				 imageUrl2:'https://weixin.sijiaoedu.com/baoming/img/upload.png',
+				 demo:0,
+				 show:false,
+				 show2:false,
+				 demo2:0,
+				 show3:false,
+				 demo3:0
+				},
+				 methods: { 
+				 	GRT(file){
+				 		this.show=true;
+				 		this.demo =40;
+				 	},
+			      handleAvatarSuccess(res, file) {
+			        this.imageUrl = URL.createObjectURL(file.raw);
+			        frontPhoto = res.thumbnailImages;
+			         this.show=true;
+			         setTimeout(() => {
+			          this.demo =100;
+			        }, 500);
+			         setTimeout(() => {
+			         	 this.show=false;
+			         this.$message({
+			         	message: '上传成功',
+			          	type: 'success'
+			        });
+			        
+			        }, 600)
+			      },
+			      GRT2(file){
+				 		this.show2=true;
+				 		this.demo2 =60;
+				 	},
+			      handleAvatarSuccess1(res, file) {
+			        this.imageUrl1 = URL.createObjectURL(file.raw);
+			           backPhoto= res.thumbnailImages;
+			           this.show2=true;
+			         setTimeout(() => {
+			          this.demo2 =100;
+			        }, 500);
+			         setTimeout(() => {
+			         this.show2=false;
+			         this.$message({
+			         message: '上传成功',
+			          type: 'success'
+			        });
+			        
+			        }, 600);
+			      },
+			      GRT3(file){
+				 		this.show3=true;
+				 		this.demo3=50;
+				 	},
+				    handleAvatarSuccess2(res, file) {
+			        this.imageUrl2= URL.createObjectURL(file.raw);
+			           facePhoto= res.thumbnailImages;
+			           this.show3=true;
+			            setTimeout(() => {
+			          this.demo3 =100;
+			        }, 500);
+			         setTimeout(() => {
+			         this.show3=false;
+			         this.$message({
+			         message: '上传成功',
+			          type: 'success'
+			        });
+			        
+			        }, 600);
+			      },
+			      // beforeAvatarUpload(file) {
+			      //   const isJPG = file.type === 'image/jpeg';
+			      //   const isLt2M = file.size / 1024 / 1024 < 2;
+
+			      //   if (!isJPG) {
+			      //     this.$message.error('上传头像图片只能是 JPG 格式!');
+			      //   }
+			      //   if (!isLt2M) {
+			      //     this.$message.error('上传头像图片大小不能超过 2MB!');
+			      //   }
+			      //   return isJPG && isLt2M;
+			      // }
+			 
+				open(){  
+		    		var memberId = localStorage.getItem("memberId");
+					if(frontPhoto==""){ 
+						alert('请上传身份证正面'); 
+						return;
+					}
+					if(backPhoto==""){
+						 alert('请上传身份证反面');
+						 return;
+					}
+					if(facePhoto==""){
+						 alert('请上传手持身份证照片');
+						 return;
+					}
+		    		var datas = {"frontPhoto":frontPhoto,"backPhoto":backPhoto,"facePhoto":facePhoto,"memberId":memberId};
+		    		    $.ajax({ 
+							type : "POST", //提交方式 
+							url : "https://weixin.sijiaoedu.com/api/upload.html?",//路径 
+							data : datas,//数据，这里使用的是Json格式进行传输 
+							success : function(data) {//返回数据根据结果进行相应的处理 
+
+							console.log(data);
+							 $(location).attr('href', '/baoming/fillin.html');
+							} 
+						}); 
+    				} 
+				}
+			})		
+	</script>
+	<script>
+	
+	 
+
+  </script>
+</body>
+<style type="text/css">
+	<style>
+  .avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
+
+</style>
+
+</style>
+</html>

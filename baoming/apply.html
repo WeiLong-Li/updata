@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>贷款申请</title>
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="style/apply.css">
+	<link rel="stylesheet" type="text/css" href="style/default.css">
+	<!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
+	<!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- import JavaScript -->
+  	<!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
+  	<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+  	<script>
+		var pixelRatio = 1 / window.devicePixelRatio;    //还原设备的真实分辨率；  
+		//devicePixelRatio设备的像素比   像素比：物理像素/逻辑像素；          
+		document.write('<meta name="viewport" content="width=device-width,initial-scale='+pixelRatio+',minimum-scale='+pixelRatio+',maximum-scale='+pixelRatio+'" />');
+
+		var html=document.getElementsByTagName('html')[0];   //获取每个型号的手的html元素
+		var pageWidth=html.getBoundingClientRect().width;   //获取每个型号的手的宽度
+		html.style.fontSize=pageWidth/10+"px";        //除10获取每个型号手机的根元素字体大小    
+		//rem是相对于根元素   动态的获取每个型号手机下面根元素的字体大小              
+	</script>
+
+	<style type="text/css">
+	.ap2{
+		width:90%;
+		height:6rem;
+		position: fixed;
+		top:-9rem;
+		z-index: 999;
+		top:10%;
+		z-index: 99;
+		left:5%;
+		text-align: center;
+	}
+	.ap2>canvas{
+		width:100% !important;
+		height:5rem !important;
+		background:red;
+		border:1px dashed black;
+		background:#D3D3D3;
+		position: relative;
+		top:-0.9rem;
+	}
+	#img{
+		width:5rem;
+		height:2rem;
+	}
+
+	</style>
+</head>
+<body>
+	<div class="h1">贷款申请</div>
+	<div class="apply">
+		<div class="p1">&nbsp;&nbsp;&nbsp;&nbsp;本人（本公司)<span class="name"></span>现申请通过安徽国元
+		互联网金融信息服务股份有限公司运营的网络平台公开融资人民币共计<span class="money"></span>元,期限<span class="month"></span>个月</div>
+		<div class="p3">&nbsp;&nbsp;&nbsp;&nbsp;本人（本公司）在此郑重承诺：</div>
+		<div class="p4">&nbsp;&nbsp;&nbsp;&nbsp;1.所提供的资料真实、合法、有效，如有隐瞒或虚构本人（本公司）自愿承担一切法律责任。</div>
+		<div class="p6">&nbsp;&nbsp;&nbsp;&nbsp;2.单个借款人（法人或其他组织）在所有网络借贷信息中介机构平台借款总余额（含本次借款金额）不超过人民币500万元；单个借款人（自然人）在所有网络借贷信息中介机构平台借款总余额（含本次借款金额）不超过人民币100万元。</div>
+	</div>
+		<div class="foote">
+		<div class="p10">申请人签字（盖章）：</p>
+					<button class="btn3">点击签名</button>
+					<img src="" id="img">
+					<img src="">
+					<div class="js-signature ap1"></div>
+					<div class="js-signature ap2" data-width="600" data-height="500" data-line-color="black" data-auto-fit="true">	
+						<p class="button"><button id="clearBtn" class="btn btn-default" onclick="clearCanvas();">清除</button><button id="saveBtn" class="btn btn-default" onclick="saveSignature();" disabled>提交</button></p>
+					</div>
+		</div>
+		<div class="p11"> 联系方式：<p class="telephone"></p></div>
+		<div class="p12">日期：<span class="year"></span>年<span class="month2"></span>月<span class="day"></span>日</div>
+		</div>
+		<script src="js/jquery-1.11.0.min.js"></script>
+	<script src="js/jq-signature.js"></script>
+	<script type="">
+		$(".ap2").hide();
+		$(".button").hide()
+		$("#img").hide()
+	$(document).on('ready', function() {
+			if ($('.js-signature').length) {
+				$('.js-signature').jqSignature();
+			}
+		});
+		$(".btn3").click(function(){
+  			$(".button").show()
+			
+			$(".ap2").show();
+		})
+		function clearCanvas() {
+			$('#signature').html('<p><em>Your signature will appear here when you click "Save Signature"</em></p>');
+			$('.js-signature').eq(1).jqSignature('clearCanvas');
+			$('#saveBtn').attr('disabled', true);
+		}
+		var ids = localStorage.getItem("memberId");
+		function saveSignature() {
+			$('#signature').empty();
+			 var dataUrl = $('.js-signature').eq(1).jqSignature('getDataURL');
+			 $("#img").attr('src',dataUrl);
+			var img = $('<img>').attr('src', dataUrl);
+			$('#signature').append($('<p>').text("Here's your signature:"));
+			$('#signature').append(img);
+			 $.ajax({ 
+		     		type : "POST", //提交方式 
+		     		url : "https://weixin.sijiaoedu.com/api/memberSign.html?",
+		     		data : { 
+		     				"id":ids,
+		     				"imgPaht":dataUrl /*id*/	
+		     		}, 
+		     		success : function(data) { 
+		     			alert("提交成功")
+		     			$(location).attr('href', '/baoming/examine.html');
+		     			$(".btn3").hide();
+		     			$("#img").show()
+		     			$(".button").hide()
+						$(".ap2").hide();
+	     			} 
+    			}); 
+			}
+		$('.js-signature').eq(1).on('jq.signature.changed', function() {
+			$('#saveBtn').attr('disabled', false);
+		});
+			 $.ajax({ 
+		     		type : "GET", //提交方式 
+		     		url : "https://weixin.sijiaoedu.com/api/memberInfo.html?",
+		     		data : { 
+		     				"id":ids,  /*id*/	
+		     		}, 
+		     		success : function(data) { 
+		     			$(".name").html(data.result.userName)
+		     			$(".money").html(data.result.money)
+		     			$(".month").html("12");
+		     			// $(".seal").html(data.result.userName)
+		     			$(".telephone").html(data.result.phone);
+		     			$(".year").html(data.result.isLive);
+						$(".month2").html(data.result.isReal);
+						$(".day").html(data.result.address);
+	     			} 
+    			});
+			 
+	</script>
+</body>
+</html>

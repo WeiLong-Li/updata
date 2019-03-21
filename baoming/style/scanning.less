@@ -1,0 +1,423 @@
+// @charset "UTF-8";
+// @range:75rem;
+// *{
+// 	margin:0px;
+// 	padding:0px;
+// 	font-family:'微软雅黑';
+// }
+// .title{
+// 	width:98%;
+// 	padding-left:30/@range;
+// 	height:50/@range;
+// 	margin-top:20/@range;
+// 	padding-left: 2%;
+// }
+// span{
+// 		font-size: 40/@range;
+// 		color:black;
+// 		width:225/@range;
+// 		height:100%;
+// 		display: inline-block;
+// 		float:left;
+// 		line-height: 100%;
+// 		margin-left: 10/@range;
+// 		font-weight: 500;
+// 	}
+// 	.titleicon{
+// 	width:10/@range;
+// 	height:80%;
+// 	background: #0F8EEF;
+// 	float: left;
+// }
+// .el-upload{
+// 	border:1/@range solid #ddd !important;
+// 	width:200/@range !important;
+// 	height:200/@range !important;
+
+// }
+// .avatar-uploader-icon{
+// 	width:200/@range !important;
+// 	line-height: 205/@range !important;
+// }
+// .avatar-uploader{
+// 	display: inline-block !important;
+// 	margin-left: 120/@range;
+// 	margin-top:30/@range;
+// }
+// .avatar-uploader-icon{
+// 	font-size: 128/@range!important;
+// 	color:#CCCCCC;
+// }
+// p{
+// 	display: inline-block;
+// 	font-size: 30/@range;
+// 	margin-left: 120/@range;
+// 	color:#999999;
+// }
+// .hr{
+// 	width:100%;
+// 	height:10/@range;
+// 	background: #EEEEEE;
+// 	margin-top:30/@range;
+// }
+// .bt{
+// 	width:100%;
+// 	height:200/@range;
+// 	text-align: center;
+// 	// margin-top: 100/@range;
+// }
+// .button{
+// 		width:80% !important;
+// 		height:80/@range !important;
+// 		margin:0 auto;
+// 		font-size: 35/@range !important;
+// 		line-height: 220% !important;
+// 		background: #0F8EEF !important;
+// 		border-radius: 10/@range !important;
+// 	}
+// .avatar{
+// 	width:200/@range !important;
+// 	height:200/@range !important;
+// }
+//  .circle{
+//         position: relative;
+//         box-sizing: border-box;
+//     }
+//     .big{
+//         width: 750/@range;
+//         height: 760/@range;
+//         border: 150/@range solid #fff;
+//         border-radius:50% ;
+//         position: absolute;
+//         margin: auto;     
+//         left: 0;
+//         top: -730/@range;
+//         right: 0;
+//         bottom: 0;
+//         box-sizing: border-box;
+//         // z-index: 99;
+//     }
+//     .small{
+//         width: 490/@range;
+//         height: 490/@range;
+//         border: 20/@range solid #0F8EEF;
+//         border-radius: 50%;
+//         position: absolute;
+//         margin: auto;      
+//         left: 6/@range;
+//         top: -730/@range;
+//         right: 0;
+//         bottom: 0;
+//         box-sizing: border-box;
+//     }
+//     .video{
+//     	text-align: center;
+//     	position: relative;
+//     	border-radius: 50%;
+//     }
+//     #video{
+//     	width:700/@range;
+//     	height:700/@range;
+//     	border-radius: 600/@range;
+//     }
+//     .position{
+//     	width:50%;
+//     	height:100%;
+//     	position:absolute;
+//     	left:0/@range;
+//     	background: #fff;
+//     	z-index: 99;
+//     }
+//      video::-webkit-media-controls{
+//         display:none !important;
+//     }
+// 	.size{
+// 		position: absolute;
+// 		font-size: 30/@range;
+// 		color:#6E6E6E;
+// 		bottom:50/@range;
+// 		left:300/@range;
+// 		z-index: 999;
+// 	}
+// 	#canvas{
+// 		position:absolute;
+// 		left:0px;
+// 		padding:0px;
+// 		z-index: 0;
+// 		// background: red;
+// 	}
+@charset "UTF-8";
+@range:75rem;
+*{
+	margin:0px;
+	padding:0px;
+	font-family:'微软雅黑';
+}
+html {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+ }
+body{
+  width:100%;
+  height:100%;
+  font-family: '微软雅黑';
+  background: #fff;
+}
+.title{
+	width:98%;
+	padding-left:30/@range;
+	height:50/@range;
+	margin-top:20/@range;
+	padding-left: 2%;
+}
+.weui-loading{
+	width:100/@range !important;
+	height:100/@range !important;
+}
+.cricle1{
+	position: absolute;
+	z-index: 99;
+}
+span{
+		font-size: 40/@range;
+		color:black;
+		width:300/@range;
+		height:100%;
+		display: inline-block;
+		float:left;
+		line-height: 100%;
+		margin-left: 10/@range;
+		font-weight: 500;
+	}
+	.titleicon{
+	width:10/@range;
+	height:80%;
+	background: #0F8EEF;
+	float: left;
+}
+.el-upload{
+	border:1/@range solid #ddd !important;
+	width:300/@range !important;
+	height:200/@range !important;
+	position: relative;
+}
+.avatar-uploader-icon{
+	width:200/@range !important;
+	line-height: 205/@range !important;
+}
+.avatar-uploader{
+	display: block !important;
+	margin-left: 50/@range;
+	margin-top:30/@range;
+	float: left;
+}
+.avatar-uploader-icon{
+	font-size: 128/@range!important;
+	color:#CCCCCC;
+}
+.app{
+	width:100%;
+}
+.p{
+	overflow: hidden;
+}
+p{
+	// width:50%;
+	text-align: center;
+	display: inline-block;
+	font-size: 30/@range;
+	margin-left: 100/@range;
+	color:#999999;
+}
+p:nth-child(2){
+	margin-left: 120/@range;
+}
+.hr{
+	width:100%;
+	height:10/@range;
+	background: #EEEEEE;
+	margin-top:30/@range;
+}
+.bt{
+	width:100%;
+	height:200/@range;
+	text-align: center;
+	// margin-top: 100/@range;
+}
+.button{
+		width:80% !important;
+		height:80/@range !important;
+		margin:0 auto;
+		font-size: 35/@range !important;
+		line-height: 220% !important;
+		background: #0F8EEF !important;
+		border-radius: 10/@range !important;
+	}
+.avatar{
+	width:300/@range !important;
+	height:200/@range !important;
+}
+
+ .circle{
+        position: relative;
+        box-sizing: border-box;
+    }
+   .cricle1{
+   	width:300/@range !important;
+	height:200/@range !important;
+	position: absolute !important;
+	left:0/@range;
+	background: #fff;
+   	svg{
+	   	width:200/@range !important;
+		// line-height: 205/@range !important;
+		left:45/@range;
+		position: absolute;
+		background: #fff;
+	}
+	.el-progress__text {
+		font-size: 50/@range !important;
+	}
+   }
+
+    .big{
+        width: 750/@range;
+        height: 760/@range;
+        border: 150/@range solid #fff;
+        border-radius:50% ;
+        position: absolute;
+        margin: auto;     
+        left: 0;
+        top: -730/@range;
+        right: 0;
+        bottom: 0;
+        box-sizing: border-box;
+        // z-index: 99;
+    }
+    .small{
+        width: 490/@range;
+        height: 490/@range;
+        border: 20/@range solid #0F8EEF;
+        border-radius: 50%;
+        position: absolute;
+        margin: auto;      
+        left: 6/@range;
+        top: -730/@range;
+        right: 0;
+        bottom: 0;
+        box-sizing: border-box;
+    }
+    .video{
+    	text-align: center;
+    	position: relative;
+    	border-radius: 50%;
+    	margin-top:20/@range;
+    	.el-upload{
+    		margin-left: 15/@range;
+    	}
+    }
+    #video{
+    	width:700/@range;
+    	height:700/@range;
+    	border-radius: 600/@range;
+    }
+    .position{
+    	width:50%;
+    	height:100%;
+    	position:absolute;
+    	left:0/@range;
+    	background: #fff;
+    	z-index: 99;
+    }
+     video::-webkit-media-controls{
+        display:none !important;
+    }
+	.size{
+		// position: absolute;
+		display: inline-block;
+		font-size: 30/@range;
+		color:#6E6E6E;
+		bottom:50/@range;
+		left:300/@range;
+		z-index: 999;
+	}
+	#canvas{
+		position:absolute;
+		left:0px;
+		padding:0px;
+		z-index: 0;
+		// background: red;
+	}
+	.updata{
+		width:95%;
+		height:450/@range;
+		background-size: 100% 100%;
+		margin-left:0px;
+		margin:0px auto;
+		position: relative;
+		.el-upload{
+			width:100% !important;
+			height:100% !important;
+		}
+		img{
+			width:100% !important;
+			height:100% !important;
+		}
+		.up{
+			width:100% !important;
+			height:100% !important;
+			// background: url(../img/shouchishenfenzhengicon.png)100% 100%;
+			background-size:100% 100%;
+			display: block;
+		}
+	}
+	.cricle2{
+   	width:300/@range !important;
+	height:200/@range !important;
+	position: absolute !important;
+	left:0/@range;
+	background: #fff;
+   	svg{
+	   	width:200/@range !important;
+		// line-height: 205/@range !important;
+		left:45/@range;
+		position: absolute;
+		background: #fff;
+	}
+	.el-progress__text {
+		font-size: 50/@range !important;
+	}
+   }
+   .up2{
+   	position: relative !important;
+   }
+   .cricle3{
+   	width:101% !important;
+	height:450/@range !important;
+	position: absolute !important;
+	left:0/@range;
+	background: #fff;
+	.el-progress-cricle{
+		width:100% !important;
+		height:100% !important;
+	}
+   	svg{
+	   	width: 400/@range!important;
+	   	height:400/@range !important;
+		// line-height: 205/@range !important;
+		position: absolute;
+		background: #fff;
+		left:150/@range;
+		top:30/@range;
+	}
+	.el-progress__text {
+		font-size: 50/@range !important;
+	}
+   }
+   .up2{
+   	position: relative !important;
+   }
+   .el-message__content{
+   	font-size: 35/@range !important ;
+   }
